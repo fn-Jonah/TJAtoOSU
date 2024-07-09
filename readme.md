@@ -12,7 +12,14 @@ Progress
 
 
 Still To Do
+
     - Importing song data and bg data
+
     - Importing files with multiple difficulties
+
     - Importing to .osu file
+
+    - Reverse .osu to .tja
+
+    - Clean up UI 
 
