@@ -4,10 +4,12 @@ Converts .TJA files to .OSU files
 
 
 Finished:
+
     - Imported .TJA Title/s
 
 
 Progress
+
     - Importing .TJA file data
 
 
