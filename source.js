@@ -23,7 +23,9 @@ async function loadFile(file) {
 
 // title
 var TITLE = "";
+var titleFound = false;
 var TITLEEN = "";
+var titleENFound = false
 var TITLEJA = "";
 // var TITLECN;
 // var TITLETW;
@@ -31,49 +33,51 @@ var TITLEJA = "";
 
 
 // subtitle/origin
-var SUBTITLE;
-var SUBTITLEEN;
-var SUBTITLEJA;
+var SUBTITLE = "";
+var subtitleFound = false;
+var SUBTITLEEN = "";
+var subtitleENFound = false;
+var SUBTITLEJA = "";
 // var SUBTITLECN;
 // var SUBTITLETW;
 // var SUBTITLEKO;
 
 //BPM
-var BPM;
+var BPM = "";
 
 // WAVE / AUDIO
-var WAVE;
+var WAVE = "";
 
 // Offset
-var OFFSET;
+var OFFSET = "";
 
 // demostart (preview)
-var DEMOSTART;
+var DEMOSTART = "";
 
 // MAKER (beatmap creator)
-var MAKER;
+var MAKER = "";
 
 // SONGVOL (not useful)
-var SONGVOL = 100;
+var SONGVOL = "100";
 
 // Sound Effect Volume (not useful)
-var SEVOL = 100;
+var SEVOL = "100";
 
 // HEADSCROLL (initial scroll speed, sometimes ignored)
-var HEADSCROLL;
+var HEADSCROLL = "";
 
 // BGIMG (background image)
-var BGIMG;
+var BGIMG = "";
 
 // BGMOVIE (not implementing this)
-var BGMOVIE;
+var BGMOVIE = "";
 
 // MOVIEOFFSET (not implementing this)
-var MOVIEOFFSET;
+var MOVIEOFFSET = "";
 
 
 // COURSE 
-var COURSE;
+var COURSE = "";
 /*
 "Easy" or "0"
 "Normal" or "1"
@@ -84,7 +88,7 @@ var COURSE;
 
 
 // BALLOON NOTES
-var BALLOON;
+var BALLOON = "";
 
 
 /* # START
@@ -113,30 +117,60 @@ for (let i = 0; i < semifinalText.length; i++) {
 for (let j = 0; j < semifinalText[i].length; j++) {
     // main loop starts here
 
-    if (semifinalText[i][j] == "T" && semifinalText[i][j+1] == "I" && semifinalText[i][j+2] == "T" && semifinalText[i][j+3] == "L" && semifinalText[i][j+4] == "E") {
-        if (semifinalText[i][j+5] == ":"){
 
-         
-            for (let index = 0; index < (semifinalText[i].length-6); index++){
-                TITLE += semifinalText[i][index+6];
-            }   
-         
-            console.log("TITLE FOUND! TITLE = " + TITLE + " ", + i, " " + j)
-        } 
+    if (titleFound == false || titleENFound == false){
+        if (semifinalText[i][j] == "T" && semifinalText[i][j+1] == "I" && semifinalText[i][j+2] == "T" && semifinalText[i][j+3] == "L" && semifinalText[i][j+4] == "E") {
+            if (semifinalText[i][j+5] == ":"){
+    
+             
+                for (let index = 0; index < (semifinalText[i].length-6); index++){
+                    TITLE += semifinalText[i][index+6];
+                }   
+             
+                console.log("TITLE = " + TITLE)
+                titleFound = true
+            } 
+            
+            else if (semifinalText[i][j+5] == "E" && semifinalText[i][j+6] == "N"){
+    
+                for (let index =0; index < (semifinalText[i].length - 8); index++){
+                    TITLEEN += semifinalText[i][index+8]
+                }
+                console.log("English Title = " + TITLEEN)
+                titleENFound = true
+            }
+            else if (semifinalText[i][j+5] == "J" && semifinalText[i][j+6] == "A"){
+                for (let index = 0; index < (semifinalText[i].length - 8); index++){
+                    TITLEJA += semifinalText[i][index+8]
+                }
+                console.log("Japanese Title = " + TITLEJA)
+            }
+    }
+
+    }
+    if (subtitleFound == false || subtitleENFound == false){
+        if (semifinalText[i][j] == "S" && semifinalText[i][j+1] == "U" && semifinalText[i][j+2] == "B"){
+            if (semifinalText[i][j+8] == ":"){
+                
+                subtitleFound = true
+
+                for (let index = 0; index < (semifinalText[i].length-9); index++){
+                    SUBTITLE += semifinalText[i][index+9]
+                }
+                console.log("Subtitle = " + SUBTITLE)
+            }
+
+            else if (semifinalText[i][j+8] == "E") {
+            
+
+                for (let index = 0; index < (semifinalText[i].length-11); index++){
+                    SUBTITLEEN += semifinalText[i][index+11]
+                }
+                console.log("English Subtitle = " + SUBTITLEEN)
+                subtitleENFound = true
+            }
+        }
         
-        else if (semifinalText[i][j+5] == "E" && semifinalText[i][j+6] == "N"){
-
-            for (let index =0; index < (semifinalText[i].length - 8); index++){
-                TITLEEN += semifinalText[i][index+8]
-            }
-            console.log("English Title Found = " + TITLEEN)
-        }
-        else if (semifinalText[i][j+5] == "J" && semifinalText[i][j+6] == "A"){
-            for (let index = 0; index < (semifinalText[i].length - 8); index++){
-                TITLEJA += semifinalText[i][index+8]
-            }
-            console.log("Japanese Title Found = " + TITLEJA)
-        }
 
     }
 
